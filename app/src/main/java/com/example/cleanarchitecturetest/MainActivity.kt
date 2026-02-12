@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -28,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.cleanarchitecturetest.presentation.NoteViewModel
 import com.example.cleanarchitecturetest.ui.theme.CleanArchitectureTestTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,7 +39,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CleanArchitectureTestTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    val viewModel: NoteViewModel = viewModels<NoteViewMoel>().value
+                    val viewModel: NoteViewModel = viewModels<NoteViewModel>().value
                     Greeting(
                         viewModel,
                         modifier = Modifier.padding(innerPadding)
@@ -51,7 +53,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(viewModel: NoteViewModel, modifier: Modifier = Modifier) {
     var text by remember { mutableStateOf("") }
-    LaunchedEffect(Unit) { viewModel.loadNotes }
+    LaunchedEffect(Unit) { viewModel.loadNotes() }
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -94,10 +96,3 @@ fun Greeting(viewModel: NoteViewModel, modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CleanArchitectureTestTheme {
-        Greeting("Android")
-    }
-}
