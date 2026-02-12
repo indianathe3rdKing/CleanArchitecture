@@ -4,5 +4,5 @@ import com.example.cleanarchitecturetest.domain.model.Note
 import com.example.cleanarchitecturetest.domain.repository.NoteRepository
 
 class DeleteNoteUseCase(private val repository: NoteRepository) {
-    operator fun invoke(note:Note): List<Note> = repository.deleteNote(note)
+    operator fun invoke(note:Note) = repository.deleteNote(note)
 }

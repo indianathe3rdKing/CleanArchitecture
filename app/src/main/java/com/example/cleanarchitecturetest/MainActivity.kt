@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -36,8 +37,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             CleanArchitectureTestTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    val viewModel: NoteViewModel = viewModels<NoteViewMoel>().value
                     Greeting(
-                        name = "Android",
+                        viewModel,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -47,7 +49,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(viewModel: NotesViewModel, modifier: Modifier = Modifier) {
+fun Greeting(viewModel: NoteViewModel, modifier: Modifier = Modifier) {
     var text by remember { mutableStateOf("") }
     LaunchedEffect(Unit) { viewModel.loadNotes }
     Column(
