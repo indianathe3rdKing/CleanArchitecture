@@ -1,4 +1,4 @@
-package com.example.cleanarchitecturetest.data
+package com.example.cleanarchitecturetest.domain.model
 
 data class Note(
     val id: Int,
